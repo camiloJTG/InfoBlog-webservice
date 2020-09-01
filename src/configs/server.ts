@@ -1,9 +1,15 @@
 import 'dotenv/config';
+import 'reflect-metadata';
 
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import routes from '../controllers/routers/index';
+import {
+  logsError,
+  errorHandler,
+} from '../controllers/middlewares/errorHandler';
 
 const app = express();
 
@@ -17,8 +23,11 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 // Routes
+routes(app);
 
 // Error Middlewares
+app.use(logsError);
+app.use(errorHandler);
 
 // Static Fields
 

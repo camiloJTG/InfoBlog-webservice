@@ -3,11 +3,11 @@ import { IRoles, Roles } from '../models/roles';
 
 export const createRole = async (role: IRoles): Promise<Roles> => {
   const roleExist = await getRepository(Roles).find({
-    where: { roleName: role.roleName },
+    where: { NAME: role.NAME },
   });
 
   if (roleExist.length !== 0) {
-    throw new Error(`The ${role.roleName} role name has already registered`);
+    throw new Error(`The ${role.NAME} role name has already registered`);
   }
 
   const newRole = getRepository(Roles).create(role);
@@ -17,7 +17,7 @@ export const createRole = async (role: IRoles): Promise<Roles> => {
 
 export const getOneRole = async (id: number | string): Promise<Roles> => {
   const getRole = await getRepository(Roles).findOne({
-    where: { roleId: id },
+    where: { ID: id },
   });
   if (getRole === undefined) {
     throw new Error(`The ${id} was not foud in the database`);
@@ -38,7 +38,7 @@ export const updateRole = async (
   roles: IRoles
 ): Promise<Roles> => {
   const getOneRole = await getRepository(Roles).findOne({
-    where: { roleId: id },
+    where: { ID: id },
   });
   if (getOneRole === undefined) {
     throw new Error(`The ${id} was not foud in the database`);

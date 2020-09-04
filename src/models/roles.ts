@@ -7,23 +7,23 @@ import {
 } from 'typeorm';
 
 export interface IRoles {
-  roleId: number;
-  roleName: string;
-  roleCreatedAt: string;
-  roleUpdatedAt: string;
+  ID: number;
+  NAME: string;
+  CREATED_AT: string;
+  UPDATED_AT: string;
 }
 
 @Entity()
 export class Roles implements IRoles {
   @PrimaryGeneratedColumn()
-  roleId!: number;
+  ID!: number;
 
   @Column({ length: 100, type: 'varchar', nullable: false })
-  roleName!: string;
+  NAME!: string;
 
   @CreateDateColumn({ type: 'timestamp', nullable: false })
-  roleCreatedAt!: string;
+  CREATED_AT!: string;
 
   @UpdateDateColumn({ type: 'timestamp', nullable: false })
-  roleUpdatedAt!: string;
+  UPDATED_AT!: string;
 }

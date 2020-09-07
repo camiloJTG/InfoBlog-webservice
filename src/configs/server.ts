@@ -5,7 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import routes from '../controllers/routers/index';
+import routes from '../controllers/routers/index.routes';
 import {
   logsError,
   errorHandler,

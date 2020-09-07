@@ -6,15 +6,18 @@
   "scripts": {
     "dev": "nodemon src/configs/index.ts --exec ts-node",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "set NODE_ENV=production&&node dist/configs/index.js",
     "lint": "eslint . --ext .ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.7",
     "@types/express": "^4.17.7",
+    "@types/hapi__joi": "^17.1.4",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/morgan": "^1.9.1",
     "@types/node": "^14.6.2",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
@@ -32,6 +35,8 @@
     }
   },
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.0.0",
     "brcypt": "^1.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -40,7 +45,6 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "passport": "^0.4.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.25"
   }

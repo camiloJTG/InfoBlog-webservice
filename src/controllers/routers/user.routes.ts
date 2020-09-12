@@ -5,7 +5,7 @@ import {
   createUser,
   getAllUsers,
   getOneUser,
-  updateUsers,
+  updateUser,
 } from '../../services/user.service';
 import {
   createUserSchema,
@@ -92,7 +92,7 @@ route.put(
     next: NextFunction
   ): Promise<Response | undefined> => {
     try {
-      const result = await updateUsers(req.params.id, req.body);
+      const result = await updateUser(req.params.id, req.body);
       return success(req, res, result, 201);
     } catch (e) {
       next(e);

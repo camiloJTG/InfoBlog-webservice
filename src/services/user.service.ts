@@ -47,7 +47,7 @@ export const getAllUsers = async (): Promise<Users[]> => {
   return getAll;
 };
 
-export const updateUsers = async (
+export const updateUser = async (
   id: number | string,
   users: Users
 ): Promise<Users> => {

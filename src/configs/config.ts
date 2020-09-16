@@ -6,4 +6,10 @@ export const config = {
   jwt: {
     secretKey: process.env.JWT_SECRET || '',
   },
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    key: process.env.CLOUDINARY_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET,
+    secure: process.env.CLOUDINARY_SECURE,
+  },
 };

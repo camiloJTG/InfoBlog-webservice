@@ -10,10 +10,9 @@ import {
   logsError,
   errorHandler,
 } from '../controllers/middlewares/errorHandler';
+import { join } from 'path';
 
 const app = express();
-
-// Settings
 
 // Global Middlewares
 app.use(express.json());
@@ -30,5 +29,6 @@ app.use(logsError);
 app.use(errorHandler);
 
 // Static Fields
+app.use(express.static(join(__dirname, 'public')));
 
 export default app;

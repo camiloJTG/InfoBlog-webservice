@@ -95,4 +95,5 @@ route.delete(
     }
   }
 );
+
 export default route;

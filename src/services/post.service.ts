@@ -1,6 +1,5 @@
-import { string } from '@hapi/joi';
 import { getRepository, createQueryBuilder } from 'typeorm';
-import { IPosts, Posts } from '../models/posts.model';
+import { IPosts, Posts } from '../models/post.model';
 import {
   createImage,
   deleteImage,

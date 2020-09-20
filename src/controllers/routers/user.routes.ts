@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { success } from '../middlewares/responseHandler';
 import { validatorHandler } from '../middlewares/validatorHandler';
+import { checkAuth, checkRole } from '../middlewares/authHandler';
 import {
   createUser,
   getAllUsers,
@@ -34,6 +35,8 @@ route.post(
 
 route.post(
   '/admin',
+  checkAuth,
+  checkRole,
   validatorHandler(createUserSchema, 'body'),
   async (
     req: Request,
@@ -51,6 +54,8 @@ route.post(
 
 route.get(
   '/',
+  checkAuth,
+  checkRole,
   async (
     req: Request,
     res: Response,
@@ -67,6 +72,7 @@ route.get(
 
 route.get(
   '/:id',
+  checkAuth,
   validatorHandler({ id: userId }, 'params'),
   async (
     req: Request,
@@ -84,6 +90,7 @@ route.get(
 
 route.put(
   '/:id',
+  checkAuth,
   validatorHandler({ id: userId }, 'params'),
   validatorHandler(updateUsersSchema, 'body'),
   async (

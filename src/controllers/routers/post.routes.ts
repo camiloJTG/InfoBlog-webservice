@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { success } from '../middlewares/responseHandler';
 import { validatorHandler } from '../middlewares/validatorHandler';
+import { checkAuth } from '../middlewares/authHandler';
 import {
   createPostSchema,
   postId,
@@ -19,6 +20,7 @@ const route = Router();
 
 route.post(
   '/',
+  checkAuth,
   multer.single('IMAGE'),
   validatorHandler(createPostSchema, 'body'),
   async (req: Request, res: Response, next: NextFunction) => {
@@ -33,6 +35,7 @@ route.post(
 
 route.get(
   '/:id',
+  checkAuth,
   validatorHandler({ id: postId }, 'params'),
   async (
     req: Request,
@@ -50,6 +53,7 @@ route.get(
 
 route.get(
   '/',
+  checkAuth,
   async (
     req: Request,
     res: Response,
@@ -66,6 +70,7 @@ route.get(
 
 route.put(
   '/:id',
+  checkAuth,
   multer.single('IMAGE'),
   validatorHandler({ id: postId }, 'params'),
   validatorHandler(updatePostSchema, 'body'),
@@ -85,6 +90,7 @@ route.put(
 
 route.delete(
   '/:id',
+  checkAuth,
   validatorHandler({ id: postId }, 'params'),
   async (req: Request, res: Response, next: NextFunction) => {
     try {

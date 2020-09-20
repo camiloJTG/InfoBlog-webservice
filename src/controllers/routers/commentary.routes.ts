@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { success } from '../middlewares/responseHandler';
 import { validatorHandler } from '../middlewares/validatorHandler';
+import { checkAuth } from '../middlewares/authHandler';
 import {
   createCommentarySchema,
   commentaryUserIdSchema,
@@ -18,6 +19,7 @@ const route = Router();
 
 route.post(
   '/',
+  checkAuth,
   validatorHandler(createCommentarySchema, 'body'),
   async (
     req: Request,
@@ -35,6 +37,7 @@ route.post(
 
 route.get(
   '/byUserId/:id',
+  checkAuth,
   validatorHandler({ id: commentaryUserIdSchema }, 'params'),
   async (
     req: Request,
@@ -52,6 +55,7 @@ route.get(
 
 route.get(
   '/byPostId/:id',
+  checkAuth,
   validatorHandler({ id: commentaryPostIdSchema }, 'params'),
   async (
     req: Request,
@@ -69,6 +73,7 @@ route.get(
 
 route.get(
   '/byUserAndPost/',
+  checkAuth,
   validatorHandler(getByUserAndPostId, 'body'),
   async (req: Request, res: Response, next: NextFunction) => {
     try {

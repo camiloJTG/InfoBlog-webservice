@@ -1,12 +1,12 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { success } from '../middlewares/responseHandler';
+import { validatorHandler } from '../middlewares/validatorHandler';
+import { checkAuth, checkRole } from '../middlewares/authHandler';
 import {
   createRolesSchema,
   roleId,
   updateRolesSchema,
 } from '../schemas/role.schema';
-import { validatorHandler } from '../middlewares/validatorHandler';
-import { checkAuth } from '../middlewares/authHandler';
 import {
   createRole,
   getOneRole,
@@ -19,6 +19,7 @@ const route = Router();
 route.post(
   '/',
   checkAuth,
+  checkRole,
   validatorHandler(createRolesSchema, 'body'),
   async (
     req: Request,
@@ -37,6 +38,7 @@ route.post(
 route.get(
   '/:id',
   checkAuth,
+  checkRole,
   validatorHandler({ id: roleId }, 'params'),
   async (
     req: Request,
@@ -56,6 +58,7 @@ route.get(
 route.get(
   '/',
   checkAuth,
+  checkRole,
   async (
     req: Request,
     res: Response,
@@ -73,6 +76,7 @@ route.get(
 route.put(
   '/:id',
   checkAuth,
+  checkRole,
   validatorHandler({ id: roleId }, 'params'),
   validatorHandler(updateRolesSchema, 'body'),
   async (

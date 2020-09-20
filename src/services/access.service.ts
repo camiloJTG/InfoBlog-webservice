@@ -6,6 +6,7 @@ import { compare } from '../controllers/utils/bcrypt';
 export const accessLogin = async (login: ILogin): Promise<string> => {
   const result = await getRepository(Users).findOne({
     where: { MAIL: login.MAIL },
+    loadRelationIds: true,
   });
   if (result === undefined) {
     throw new Error(`Invalid credentials`);

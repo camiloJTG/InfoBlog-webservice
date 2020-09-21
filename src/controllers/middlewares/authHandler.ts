@@ -1,4 +1,4 @@
-import { IToken, verify } from '../utils/jwt';
+import { verify } from '../utils/jwt';
 import { error } from '../middlewares/responseHandler';
 import { Response, Request, NextFunction } from 'express';
 

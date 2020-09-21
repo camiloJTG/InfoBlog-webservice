@@ -1,4 +1,4 @@
-import { createQueryBuilder, getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { IImage, Images } from '../models/images.model';
 import { uploadFile, deleteFile } from '../apis/cloudinary';
 import { unlink } from 'fs-extra';

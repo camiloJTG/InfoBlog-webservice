@@ -71,7 +71,7 @@ route.get(
   }
 );
 
-route.get(
+route.post(
   '/byUserAndPost/',
   checkAuth,
   validatorHandler(getByUserAndPostId, 'body'),
